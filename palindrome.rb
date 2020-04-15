@@ -3,16 +3,17 @@
 
 range = (1..1000).to_a
 
-def reverse_and_add(num)
-  num.to_s.to_i + num.to_s.reverse.to_i
+def reverse(num)
+  num.to_s.reverse.to_i
 end
 
 def numeric_palindrome?(num)
-  reverse_and_add(num) == reverse_and_add(num).to_s.reverse.to_i
+  sum = num + reverse(num)
+  sum == reverse(sum)
 end
 
 def find_numeric_palindromes(range)
-  range.map { | num | num if numeric_palindrome?(num) }.compact
+  range.select { | num | num if numeric_palindrome?(num) }
 end
 
 p find_numeric_palindromes(range)
